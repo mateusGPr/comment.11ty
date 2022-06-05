@@ -1,0 +1,86 @@
+{% extends "_includes/default.njk" %}
+{% block title %}Comente Sobre!{% endblock %}
+{% block head %}
+  <link href="https://cdn.lineicons.com/3.0/lineicons.css" rel="stylesheet"/>
+{% endblock %}
+{% block content %}
+  <div class="bg-pink-600 mx-auto flex flex-col items-center text-gray-800 p-4 shadow max-w-full">
+    <button class="p-2 rounded text-center text-2xl text-white" onclick="toggleForm();"><img src="/img/comment.png" class="inline w-10 mr-1" alt=""/>Comente sobre<br/><i class="lni lni-angle-double-down block"></i>
+    </button>
+    <form
+      id="form"
+      class="hidden bg-white mt-6 flex flex-col p-3 rounded w-6/12"
+      method="POST"
+      action="/api.post"
+      onsubmit="return validate(event);">
+      <input
+        id="mail"
+        class="bg-white border border-pink-300 rounded p-2 mb-4 outline-none"
+        spellcheck="false"
+        placeholder="Email"
+        type="text">
+      <textarea
+        id="text"
+        class="bg-pink-200 p-3 border-l-2 px-1 border-pink-500 outline-none rounded"
+        spellcheck="true"
+        placeholder="Comente sobre, aqui..."></textarea>
+      <!-- buttons -->
+      <div class="flex justify-end mt-2">
+        <button
+          type="button"
+          onclick="toggleForm();"
+          class="px-4 py-1 mx-1 float-right text-sm text-indigo-600 font-semibold rounded border border-indigo-200 hover:text-white
+            hover:bg-indigo-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2">
+          Calcelar</button>
+        <button
+          type="submit"
+          text="Comentar"
+          class="px-4 py-1 mx-1 float-right text-sm text-pink-600 font-semibold rounded border border-pink-200 hover:text-white
+            hover:bg-pink-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-pink-600 focus:ring-offset-2">
+          Comentar</button>
+      </div>
+    </form>
+  </div>
+  <div class="w-11/12 p-1 mx-auto min-h-screen">
+    <div class="mx-3 mt-8 text-pink-600 text-xl border-b-2 border-pink-200">Comentários</div>
+    <div
+      class="my-4 mx-3 w-fit flex gap-3 rounded-md bg-white p-2 text-black shadow-lg">
+      <!-- Photo -->
+      <div class="mt-2">
+        <img class="w-56 shadow rounded-full" src="https://avatars.dicebear.com/api/bottts/tytygy.svg?r=50" alt="" srcset=""/>
+      </div>
+      <!-- Content -->
+      <div>
+        <!-- Header -->
+        <div
+          class="flex items-center justify-between py-1 pr-2">
+          <!-- Author -->
+          <div>
+            <a href="#" class="text-pink-500 hover:underline">Alex Friedner</a>
+            <span class="text-sm font-thin text-gray-500">
+              3 days</span>
+          </div>
+        </div>
+        <!-- Context -->
+        <div class="p-1">
+          <p class="text-gray-900 border-l-2 px-1 border-pink-500 bg-pink-200 rounded">Lorem ipsum dolor, sit amet consectetur
+            adipisicing elit. Dolores quo, luptas illo nisi sit non! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus
+            qui at eum praesentium quod perspiciatis vitae nihil velit quaerat repellendus?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const form = document.getElementById("form")
+    const mail = document.getElementById("mail")
+    const text = document.getElementById("text")
+    function toggleForm() {
+      form
+        .classList
+        .toggle("hidden")
+        mail
+        .value = ''
+      text.value = ''
+    }
+  </script>
+{% endblock %}
